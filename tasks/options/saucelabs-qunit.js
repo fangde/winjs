@@ -121,7 +121,7 @@
                 testInterval: 1000,
                 browsers: browsers,
                 throttled:4,
-                maxDuration: 1000,
+                maxDuration: 2000,
                 testname: "winjs qunit tests",
                 tags: ["winjs"],
                 onTestComplete: onTestComplete
@@ -141,7 +141,7 @@
                 ],
                 build: process.env.TRAVIS_JOB_ID,
                 testInterval: 1000,
-                maxDuration: 1000,
+                maxDuration: 2000,
                 throttled:10,
                 browsers: [{
                     browserName: "internet explorer",
