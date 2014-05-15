@@ -3,7 +3,7 @@
     "use strict";
 
     var config = require("../../config.js");
-
+    var reportingStatus = false;
     var browsers = [{
         browserName: "internet explorer",
         platform: "WIN8.1",
@@ -62,12 +62,12 @@
             }
         }
 
-        if (!this.reportingStatus) {
-            this.reportingStatus = true;
+        if (!reportingStatus) {
+            reportingStatus = true;
             setInterval(function() {
                 // Log status to avoid termination from Travis for long running tests
                 console.log("Running saucelabs jobs...");
-            }, 1000*60*3);
+            }, 1000*60);
         }
 
         return true;
