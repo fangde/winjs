@@ -96,7 +96,7 @@
             options: {
                 urls: [
                     "http://127.0.0.1:9999/bin/tests/Animations/test.html?fastanimations=false&autostart=true",
-                    "http://127.0.0.1:9999/bin/tests/AppBarAndFlyouts/test.html?fastanimations=true&autostart=true&testtimeout=10000",
+                    "http://127.0.0.1:9999/bin/tests/AppBarAndFlyouts/test.html?fastanimations=true&autostart=true",
                     "http://127.0.0.1:9999/bin/tests/Base/test.html?fastanimations=true&autostart=true",
                     "http://127.0.0.1:9999/bin/tests/Binding/test.html?fastanimations=true&autostart=true",
                     "http://127.0.0.1:9999/bin/tests/BindingList/test.html?fastanimations=true&autostart=true",
@@ -121,6 +121,7 @@
                 testInterval: 1000,
                 browsers: browsers,
                 throttled:4,
+                maxDuration: 600,
                 testname: "winjs qunit tests",
                 tags: ["winjs"],
                 onTestComplete: onTestComplete
@@ -129,19 +130,19 @@
         ie11only: {
             options: {
                 urls: [
-                    "http://127.0.0.1:9999/bin/tests/FlipView/test.html?fastanimations=true&autostart=true",
-                    "http://127.0.0.1:9999/bin/tests/Hub/test.html?fastanimations=true&autostart=true",
-                    "http://127.0.0.1:9999/bin/tests/Pivot/test.html?fastanimations=true&autostart=true",
-                    "http://127.0.0.1:9999/bin/tests/Rating/test.html?fastanimations=true&autostart=true",
-                    // disabled because they take > 80 secs and saucelabs exits
-                    //"http://127.0.0.1:9999/bin/tests/ListView/test.html?fastanimations=true&autostart=true",
-                    //"http://127.0.0.1:9999/bin/tests/ListViewIntegration/test.html?fastanimations=true&autostart=true",
-                    //"http://127.0.0.1:9999/bin/tests/SemanticZoom/test.html?fastanimations=true&autostart=true",
-                    "http://127.0.0.1:9999/bin/tests/Tooltip/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/FlipView/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/Hub/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/Pivot/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/Rating/test.html?fastanimations=true&autostart=true",
+                     "http://127.0.0.1:9999/bin/tests/ListView/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/ListViewIntegration/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/SemanticZoom/test.html?fastanimations=true&autostart=true",
+                     // "http://127.0.0.1:9999/bin/tests/Tooltip/test.html?fastanimations=true&autostart=true",
     
                 ],
                 build: process.env.TRAVIS_JOB_ID,
                 testInterval: 1000,
+                maxDuration: 600,
                 throttled:10,
                 browsers: [{
                     browserName: "internet explorer",
