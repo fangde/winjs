@@ -136,7 +136,7 @@
                      // "http://127.0.0.1:9999/bin/tests/Rating/test.html?fastanimations=true&autostart=true",
                      "http://127.0.0.1:9999/bin/tests/ListView/test.html?fastanimations=true&autostart=true",
                      // "http://127.0.0.1:9999/bin/tests/ListViewIntegration/test.html?fastanimations=true&autostart=true",
-                     // "http://127.0.0.1:9999/bin/tests/SemanticZoom/test.html?fastanimations=true&autostart=true",
+                      "http://127.0.0.1:9999/bin/tests/SemanticZoom/test.html?fastanimations=true&autostart=true",
                      // "http://127.0.0.1:9999/bin/tests/Tooltip/test.html?fastanimations=true&autostart=true",
     
                 ],
