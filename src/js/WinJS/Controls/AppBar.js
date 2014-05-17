@@ -48,6 +48,11 @@
             var appBarLayoutCustom = "custom",
                 appBarLayoutCommands = "commands";
 
+            // Constants for closedDisplayMode
+            var closedDisplayNone = "none",
+                closedDisplayMinimal = "minimal",
+                closedDisplayCompact = "compact";
+
             // Constants for AppBarCommands
             var typeSeparator = "separator",
                 typeContent = "content",
@@ -624,7 +629,7 @@
                 /// <field type="Array" locid="WinJS.UI.AppBar.commands" helpKeyword="WinJS.UI.AppBar.commands" isAdvanced="true">
                 /// Sets the AppBarCommands in the AppBar. This property accepts an array of AppBarCommand objects.
                 /// </field>
-                commands: {                  
+                commands: {
                     set: function (value) {
                         // Fail if trying to set when visible
                         if (!this.hidden) {
@@ -645,7 +650,7 @@
 
                         // Add commands
                         var len = value.length;
-                        for (var i = 0; i < len; i++) {                        
+                        for (var i = 0; i < len; i++) {
                             this._addCommand(value[i]);
                         }
 
@@ -658,6 +663,47 @@
                         WinJS.Utilities.Scheduler.schedule(this._layoutCommands, WinJS.Utilities.Scheduler.Priority.idle, this, "WinJS.AppBar._layoutCommands");
                     }
                 },
+
+                /// <field type="String" defaultValue="compact" locid="WinJS.UI.AppBar.commands" helpKeyword="WinJS.UI.AppBar.commands" isAdvanced="true">
+                /// Sets the AppBarCommands in the AppBar. This property accepts an array of AppBarCommand objects.
+                /// </field>
+                closedDisplayMode: {
+                    set function(value) {
+                        if (value === closedDisplayNone) {
+                            this._closedDisplayMode = closedDisplayNone;
+                        } else if (value === closedDisplayMinimal) {
+                            this._closedDisplayMode = closedDisplayMinimal;
+                        } else { // Compact is default
+                            if (this.placement === appBarPlacementTop || this.layout === appBarLayoutCustom) {
+                                // Compact not available in custom or top appbars.
+                                this._closedDisplayMode = closedDisplayMinimal;
+                            } else {
+                                this._closedDisplayMode = closedDisplayCompact;
+                            }
+                        }
+                    }, get function() {
+                        return this._closedDisplayMode;
+                    },
+                },
+
+                /// <field type="Boolean" locid="WinJS.UI.AppBar.disabled" helpKeyword="WinJS.UI.AppBar.disabled">Disable an AppBar, setting or getting the HTML disabled attribute. When disabled the AppBar will no longer display with show(), and will hide completely if currently visible.</field>
+                disabled: {
+                    get: function () {
+                        // Just refer to base class disabled property
+                        return Object.getOwnPropertyDescriptor(WinJS.UI._Overlay.prototype, "disabled").get.call(this);
+                    },
+                    set: function (disable) {
+                        var disable = !!disable;                        
+                        if (!disable && this.disabled !== disable) {
+                            // AppBar is being disabled, needs to animate into the correct closed position.
+                            this.close();
+                        } else {
+                            // defer to _Ovarlay property setter to make sure AppBar is completely hidden.
+                            Object.getOwnPropertyDescriptor(WinJS.UI._Overlay.protoype, "disabled").set(this, disable);
+                        }
+                    },
+                },
+
 
                 getCommandById: function (id) {
                     /// <signature helpKeyword="WinJS.UI.AppBar.getCommandById">
